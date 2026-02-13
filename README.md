@@ -32,7 +32,7 @@ Engage your users with custom local and push notifications on Flutter. Get real-
 
 ***Android** notification examples:*
 
-![](https://raw.githubusercontent.com/rafaelsetragni/awesome_notifications/master/example/assets/readme/awesome-notifications-android-examples.jpg)
+![](https://bit.ly/4ri7jUg)
 
 
 <br>
@@ -70,6 +70,15 @@ All notification types can be created locally or via remote push services, with 
 *Working Progress Percentages of Awesome Notifications Plugin*
 
 OBS: Please note that these progress percentages are estimates and are subject to change. We are continually working to improve the Awesome Notifications plugin and add support for new platforms.
+
+<br>
+<br>
+
+# 🤝 Contributing
+
+Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) before submitting a pull request.
+
+**Important:** All pull requests must target the `development` branch. PRs aimed at `master` will be rejected.
 
 <br>
 <br>
@@ -122,6 +131,13 @@ We are constantly working to improve Awesome Notifications and provide support f
 
 ## 🚚 Migration Guides from Older Versions
 ### Breaking Changes
+
+### From Version 0.10.X to 0.11.X:
+
+- **iOS Minimum Deployment Target Raised to 15.0:** The minimum iOS deployment target has been increased from iOS 12 to iOS 15. Ensure your project's `Podfile` specifies `platform :ios, '15.0'` or higher and update the deployment target in Xcode accordingly.
+- **Foreground Service Type Removed from Library Manifest (Android):** The `android:foregroundServiceType` attribute is no longer declared in the library's `AndroidManifest.xml`. Consumer apps must declare the foreground service types they use in their own manifest.
+- **`BIND_NOTIFICATION_LISTENER_SERVICE` Permission Removed (Android):** Consumer apps needing `NotificationListenerService` must declare this permission themselves.
+- **Build System Updated (Android):** AGP 8.1.1 → 8.10.1, Gradle 8.10 → 8.11.1, and multiple dependency updates. Ensure your project's Gradle configuration is compatible.
 
 ### From Version 0.9.X to 0.10.X:
 
@@ -213,7 +229,7 @@ We are constantly working to improve Awesome Notifications and provide support f
 
 <br>
 
-### from version 0.6.X to 0.7.X:
+### From Version 0.6.X to 0.7.X:
 
   - **Action Events Update:** Now it's possible to receive action events without bringing the app to the foreground. Please refer to the action type's topic for more information on how to implement this.
 
@@ -238,15 +254,17 @@ We are constantly working to improve Awesome Notifications and provide support f
     - [**Key Features:**](#key-features)
   - [Notification Types Available](#notification-types-available)
 - [🛑 ATTENTION - PLUGIN UNDER DEVELOPMENT](#-attention---plugin-under-development)
+- [🤝 Contributing](#-contributing)
 - [💰 Donate via Stripe or BuyMeACoffee](#-donate-via-stripe-or-buymeacoffee)
 - [💬 Discord Chat Server](#-discord-chat-server)
 - [✅ Next steps](#-next-steps)
   - [🛑 ATTENTION: Third-Party Plugin Restrictions](#-attention-third-party-plugin-restrictions)
   - [🚚 Migration Guides from Older Versions](#-migration-guides-from-older-versions)
     - [Breaking Changes](#breaking-changes)
+    - [From Version 0.10.X to 0.11.X:](#from-version-010x-to-011x)
     - [From Version 0.9.X to 0.10.X:](#from-version-09x-to-010x)
     - [From Version 0.8.X to 0.9.X:](#from-version-08x-to-09x)
-    - [from version 0.6.X to 0.7.X:](#from-version-06x-to-07x)
+    - [From Version 0.6.X to 0.7.X:](#from-version-06x-to-07x)
 - [📙 Table of Contents](#-table-of-contents)
 - [🔶 Main Philosophy of Awesome Notifications](#-main-philosophy-of-awesome-notifications)
 - [🛠 Getting Started](#-getting-started)
@@ -336,18 +354,17 @@ To use the `awesome_notifications`, follow these steps:
 ```yaml
 dependencies:
   # Awesome plugins for local notifications
-  awesome_notifications_core: ^0.10.0 # use the latest core version available
-  awesome_notifications: ^0.10.0 # This version is managed by core plugin
+  awesome_notifications_core: ^0.11.0 # use the latest core version available
+  awesome_notifications: ^0.11.0 # This version is managed by core plugin
 
   # Awesome plugins for remote push notifications
-  awesome_notifications_fcm: ^0.10.0 # This version is managed by core plugin
+  awesome_notifications_fcm: ^0.11.0 # This version is managed by core plugin
   # Attention:
   # The firebase_messaging plugin is not necessary. awesome_notifications_fcm is a replacement for it
   # firebase_messaging: ^X.X.X 
   
-  # Firebase plugins, in case you intent to use Push Notifications with awesome packages
+  # Firebase plugins, in case you intend to use Push Notifications with awesome packages
   firebase_core: ^X.X.X # use the latest available
-  firebase_crashlytics: ^X.X.X # use the latest available
 ```
 
 After adding the dependency, run the following command to get the package:
@@ -356,13 +373,13 @@ After adding the dependency, run the following command to get the package:
 flutter pub get
 ```
 
-Now you need to modify some files in native libraries to meet to use awesome_notifications properly. Let's start with the Android configurations:
+Now you need to modify some files in native libraries to use awesome_notifications properly. Let's start with the Android configurations:
 
 <br>
 
 ### 🤖 Configuring Android for Awesome Notifications:
 
-1 - Is required the minimum android SDK to 23 (Android 6.0 Lollipop), Grade 8.1.1 or greater and Java compiled SDK Version to 34 (Android 14). You can change the `minSdkVersion` to 23 and the `compileSdkVersion` and `targetSdkVersion` to 34, inside the file `build.gradle`, located inside "android/app/" folder.
+1 - Is required the minimum android SDK to 23 (Android 6.0 Marshmallow), Gradle 8.1.1 or greater and Java compiled SDK Version to 34 (Android 14). You can change the `minSdkVersion` to 23 and the `compileSdkVersion` and `targetSdkVersion` to 34, inside the file `build.gradle`, located inside "android/app/" folder.
 ```Gradle
 buildscript {
     ...
@@ -373,11 +390,11 @@ buildscript {
 }
 
 android {
-    compileSdkVersion 34
+    compileSdkVersion 36
 
     defaultConfig {
         minSdkVersion 23
-        targetSdkVersion 34
+        targetSdkVersion 36
         ...
     }
     ...
@@ -397,7 +414,7 @@ android {
 </manifest>
 ```
 
-3 -  If you're using any `<activity>`, `<activity-alias>`, `<service>`, or `<receiver>` components with `<intent-filter>` declared inside, add the attribute `android:exported="true"` to make them accessible from outside the app's context.:
+3 -  If you're using any `<activity>`, `<activity-alias>`, `<service>`, or `<receiver>` components with `<intent-filter>` declared inside, add the attribute `android:exported="true"` to make them accessible from outside the app's context:
 
 ```xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
@@ -794,9 +811,9 @@ You can also check the `GeneratedPluginRegistrant.m` file to see the correct plu
 
 <br>
 
-With the examples bellow, you can check all the features and how to use the Awesome Notifications in pratice. The Simple Example app contains the basic structure to use Awesome Notifications, and the Complete Example App contains all Awesome Notification features to test.
+With the examples bellow, you can check all the features and how to use the Awesome Notifications in practice. The Simple Example app contains the basic structure to use Awesome Notifications, and the Complete Example App contains all Awesome Notification features to test.
 
-To run and debug the Simple Example App, follow the steps bellow:
+To run and debug the Simple Example App, follow the steps below:
 
 1. Create a new Flutter project with at least Android or iOS
 2. Copy the example code at https://pub.dev/packages/awesome_notifications/example
@@ -804,7 +821,7 @@ To run and debug the Simple Example App, follow the steps bellow:
 4. Debug the application with a real device or emulator
 
 
-To run and debug the Complete Example App, follow the steps bellow:
+To run and debug the Complete Example App, follow the steps below:
 
 1. Install GitHub software in your local machine. I strongly recommend to use [GitHub Desktop](https://desktop.github.com/).
 2. Go to one of our GitHub repositories
@@ -819,7 +836,7 @@ To run and debug the Complete Example App, follow the steps bellow:
     
 # 🔷 Awesome Notification's Flowchart
 
-Notifications are received by local code or Push service using native code, so the messages will appears immediately or at schedule time, independent of your application is running or not.
+Notifications are received by local code or Push service using native code, so the messages will appear immediately or at schedule time, independent of your application is running or not.
 
 ![Awesome Notification's flowchart](https://user-images.githubusercontent.com/40064496/197368144-7bfcee7e-644a-4bdc-80f1-b4d38c2eaaff.png)
 
@@ -927,7 +944,7 @@ As a good practice, always check if the permissions you desire are granted befor
 
 - FullScreenIntent: The ability to show the notifications on pop up even if the user is using another app.
 
-- PreciseAlarms: Precise alarms allows the scheduled notifications to be displayed at the expected time. This permission can be revoke by special device modes, such as battery save mode, etc. Some manufactures can disable this feature if they decide that your app is consumpting many computational resources and decressing the baterry life (and without changing the permission status for your app). So, you must take in consideration that some schedules can be delayed or even not being displayed, depending of what platform are you running. You can increase the chances to display the notification at correct time, enable this permission and setting the correct notification category, but you never gonna have 100% sure about it.
+- PreciseAlarms: Precise alarms allows the scheduled notifications to be displayed at the expected time. This permission can be revoke by special device modes, such as battery save mode, etc. Some manufactures can disable this feature if they decide that your app is consuming many computational resources and decreasing the battery life (and without changing the permission status for your app). So, you must take in consideration that some schedules can be delayed or even not being displayed, depending of what platform are you running. You can increase the chances to display the notification at correct time, enable this permission and setting the correct notification category, but you never gonna have 100% sure about it.
 
 - CriticalAlert: Critical alerts is a special permission that allows to play sounds and vibrate for new notifications displayed, even if the device is in Do Not Disturb / Silent mode. For iOS, you must request Apple a authorization to your app use it.
 
@@ -1137,7 +1154,7 @@ You can use the following attributes to configure your notification channels:
 
 1 - Notification channels cannot be modified after being created on devices running Android 8 (SDK 26) or later, unless the app is reinstalled or installed for the first time after the changes.
 
-2 - In exceptional cases where modification is necessary, you can set the `forceUpdate` property to true in the `setChannel` method to delete the original channel and recreate it with a different native channel key. However, this method should only be used when absolutely necessary as it deviates from the standard defined by the Android team..
+2 - In exceptional cases where modification is necessary, you can set the `forceUpdate` property to true in the `setChannel` method to delete the original channel and recreate it with a different native channel key. However, this method should only be used when absolutely necessary as it deviates from the standard defined by the Android team.
 
 3 - Keep in mind that using `forceUpdate` will also close all active notifications on the channel.
 
@@ -1172,7 +1189,7 @@ Here are some practical examples of how to create a scheduled notification:
 
 ```Dart
   String localTimeZone = await AwesomeNotifications().getLocalTimeZoneIdentifier();
-  String utcTimeZone = await AwesomeNotifications().getLocalTimeZoneIdentifier();
+  String utcTimeZone = await AwesomeNotifications().getUtcTimeZoneIdentifier();
 
   await AwesomeNotifications().createNotification(
       content: NotificationContent(
@@ -1708,7 +1725,6 @@ NotificationContent (
 | chronometer                   | NO       | A duration to set the showWhen attribute of Android notifications to the amount of seconds to start      | Duration                  | Positive integers       | -             |
 | timeoutAfter                  | NO       | A duration to determine an expiration time limit for the notification to stay in the system tray         | Duration                  | Positive integers       | -             |
 | showWhen                      | NO       | Whether to show the time elapsed since the notification was posted                                       | bool                      | True or false           | true          |
-| chronometer                   | NO       | Display how many seconds has                                                                             | bool                      | True or false           | true          |
 | displayOnForeground           | NO       | Whether to display the notification while the app is in the foreground (preserves streams)               | bool                      | True or false           | true          |
 | displayOnBackground           | NO       | Whether to display the notification while the app is in the background (preserves streams, Android only) | bool                      | True or false           | true          |
 | icon                          | NO       | The name of the small icon to display with the notification (Android only)                               | String                    | A resource image        | -             |
@@ -1774,7 +1790,6 @@ NotificationContent (
 | preciseAlarm   |     NO   | Requires the notification to be displayed at the precise scheduled time, even when the device is in a low-power idle mode. Requires explicit permission on Android 12 and beyond. | bool          | true or false                             | false           |
 | delayTolerance |     NO   | Sets the acceptable delay tolerance for inexact notifications                                                                | int (seconds) | 600000 or greater           | 600000          |
 | timeZone       |     NO   | Specifies the time zone identifier (ISO 8601) for the notification                                                           | String        | "America/Sao_Paulo", "GMT-08:00", or "UTC" | "UTC"           |
-| preciseAlarm   |     NO   | Requires the notification to be displayed at the precise scheduled time, even when the device is in a low-power idle mode. This attribute requires explicit permission on Android 12 and beyond. | bool          | true or false               | false           |
 
 <br>
 
@@ -1932,7 +1947,7 @@ To see more information about each type, please go to https://github.com/rafaels
 
 ## ***Issue***: Undefined symbol: OBJC_CLASS$_FlutterStandardTypedData / OBJC_CLASS$_FlutterError / OBJC_CLASS$_FlutterMethodChannel
 
-***Fix***: This error happens when the flutter dependecies are not copied to another target extensions. Please, remove the old target extensions and update your awesome_notification plugin to the last version available, modifying your pod file according and running `pod install` after it.
+***Fix***: This error happens when the flutter dependencies are not copied to another target extensions. Please, remove the old target extensions and update your awesome_notification plugin to the last version available, modifying your pod file according and running `pod install` after it.
 
 <br>
 <br>
@@ -1991,5 +2006,5 @@ While the `android:name` must exactly match this value, you can configure the ot
 If the icon of the notification is not set or not valid, the notification will appear as a circle. Make sure to always specify an valid transparent icon. If you need help with this, take a look at [the examples](https://github.com/rafaelsetragni/awesome_notifications/tree/master/example).
 
 ### Foreground Services behaviour on platforms other than Android
-On any platform other then Android, all foreground service methods are no-ops (they do nothing when called), so you don't need to do a platform check before calling them.
+On any platform other than Android, all foreground service methods are no-ops (they do nothing when called), so you don't need to do a platform check before calling them.
 
