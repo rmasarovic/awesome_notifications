@@ -1,3 +1,17 @@
+## [0.11.0] - 2025-02-12
+### Added
+- **6 new foreground service types:** Added `health`, `remoteMessaging`, `shortService`, `specialUse`, `systemExempted` (API 34) and `mediaProcessing` (API 35) to `ForegroundServiceType`.
+- **Foreground service timeout handling:** `ForegroundService` now implements `onTimeout(int)` (API 34) and `onTimeout(int, int)` (API 35) to gracefully stop services that exceed their time limits, preventing ANRs and `RemoteServiceException`.
+### Fixed
+- **Off-by-one bug in `ForegroundServiceType.getSafeEnum()`:** Fixed character matching where `mediaPlayback` and `mediaProjection` were incorrectly resolved as `manifest`.
+- **Conflicting `compileSdk 34`:** Removed duplicate `compileSdk` inside `defaultConfig` that shadowed the root-level `compileSdkVersion = 36`.
+- **Migrated annotation imports:** Replaced `javax.annotation` and `org.checkerframework` with `androidx.annotation` across 17 files to fix missing imports after dependency updates.
+### Breaking changes
+- **iOS minimum deployment target raised to 15.0:** The minimum iOS deployment target has been increased from iOS 12 to iOS 15. This change is required to support newer iOS APIs and aligns with Apple's current compatibility standards.
+- **Foreground service type removed from library manifest:** The `android:foregroundServiceType` attribute is no longer declared in the library's `AndroidManifest.xml`. Consumer apps must declare the foreground service types they use in their own manifest.
+- **`BIND_NOTIFICATION_LISTENER_SERVICE` permission removed:** This permission was declared with `maxSdkVersion=22` which had no effect since the library's `minSdk` is 23. Consumer apps needing `NotificationListenerService` must declare this permission themselves.
+- **Build system updated:** AGP 8.1.1 → 8.10.1, Gradle 8.10 → 8.11.1, dependencies updated (appcompat 1.7.1, material 1.13.0, media 1.7.1, room 2.8.4, lifecycle 2.10.0, sqlite 2.6.2, guava 33.5.0, annotation 1.9.1).
+
 ## [0.10.1] - 2025-02-19
 ### Fixed
 - **Updated Android native library to fully support Flutter 3.27:** Removed deprecated Flutter V1 libraries on Android, ensuring compatibility with Flutter 3.27.
