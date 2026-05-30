@@ -5,7 +5,9 @@
 //  Created by Rafael Setragni on 05/09/20.
 //
 
+import UIKit
 import Foundation
+import UserNotifications
 
 public class NotificationContentModel : AbstractModel {
     

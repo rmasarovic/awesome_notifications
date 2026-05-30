@@ -5,6 +5,7 @@
 //  Created by CardaDev on 31/01/22.
 //
 
+import UserNotifications
 import Foundation
 
 public class DefaultsManager {

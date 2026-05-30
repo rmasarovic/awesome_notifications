@@ -5,6 +5,7 @@
 //  Created by CardaDev on 02/02/22.
 //
 
+import UserNotifications
 import Foundation
 
 public class AwesomeEventsReceiver {

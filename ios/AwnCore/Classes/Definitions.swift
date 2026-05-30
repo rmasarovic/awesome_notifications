@@ -1,3 +1,6 @@
+import UIKit
+import UserNotifications
+import Foundation
 public enum Definitions {
     public static let  USER_DEFAULT_TAG = "group.awn." + Bundle.main.getBundleName().md5.prefix(8)
     public static let  TEST_APP_GROUP = "AAA"

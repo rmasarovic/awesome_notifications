@@ -1,3 +1,4 @@
+import Foundation
 public enum NotificationLayout : String, CaseIterable {
     
   case Default = "Default"

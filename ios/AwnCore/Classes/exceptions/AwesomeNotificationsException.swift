@@ -1,3 +1,4 @@
+import Foundation
 public class AwesomeNotificationsException: Error {
     public let className:String
     public let code:String

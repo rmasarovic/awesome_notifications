@@ -5,6 +5,7 @@
 //  Created by Rafael Setragni on 21/10/20.
 //
 
+import UserNotifications
 import Foundation
 /*
 @available(iOS 10.0, *)

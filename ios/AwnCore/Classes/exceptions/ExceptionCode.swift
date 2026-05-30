@@ -1,3 +1,6 @@
+import UIKit
+import UserNotifications
+import Foundation
 public enum ExceptionCode {
     
     public static let CODE_MISSING_METHOD = "MISSING_METHOD"

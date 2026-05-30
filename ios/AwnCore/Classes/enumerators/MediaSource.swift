@@ -1,3 +1,4 @@
+import Foundation
 public enum MediaSource : String, CaseIterable {
     
     case Resource = "Resource"

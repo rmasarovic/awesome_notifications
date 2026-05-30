@@ -5,6 +5,7 @@
 //  Created by Rafael Setragni on 05/09/20.
 //
 
+import UserNotifications
 import Foundation
 
 public class NotificationChannelModel : AbstractModel {

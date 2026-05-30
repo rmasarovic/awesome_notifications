@@ -1,3 +1,4 @@
+import Foundation
 public enum GroupAlertBehaviour : String, CaseIterable {
     
     case All = "All"

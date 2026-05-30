@@ -5,6 +5,7 @@
 //  Created by Rafael Setragni on 18/02/23.
 //
 
+import UserNotifications
 import Foundation
 import SQLite3
 

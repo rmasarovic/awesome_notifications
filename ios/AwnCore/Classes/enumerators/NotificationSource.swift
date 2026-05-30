@@ -1,3 +1,4 @@
+import Foundation
 public enum NotificationSource : String, CaseIterable {
     
     case Local = "Local"

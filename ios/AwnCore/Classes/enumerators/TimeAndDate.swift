@@ -1,3 +1,4 @@
+import Foundation
 var JAN = "JAN"
 var FEB = "FEB"
 var MAR = "MAR"

@@ -55,11 +55,7 @@ public class MapUtils<T: Any> {
         }
         
         if(value is T) { return value as? T }
-        
-        if (value as AnyObject).isEmpty ?? false {
-            return defaultValue
-        }
-        
+
         return defaultValue
     }
     

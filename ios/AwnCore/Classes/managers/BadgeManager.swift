@@ -5,7 +5,9 @@
 //  Created by Rafael Setragni on 17/11/21.
 //
 
+import UserNotifications
 import Foundation
+import UIKit
 
 public class BadgeManager : AwesomeLifeCycleEventListener {
     let TAG:String = "BadgeManager"

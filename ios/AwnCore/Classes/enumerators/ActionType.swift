@@ -1,3 +1,4 @@
+import Foundation
 public enum ActionType : String, CaseIterable {
     
     case Default = "Default"

@@ -5,6 +5,7 @@
 //  Created by Rafael Setragni on 05/09/20.
 //
 
+import UIKit
 import Foundation
 
 public class NotificationButtonModel : AbstractModel {

@@ -5,7 +5,9 @@
 //  Created by Rafael Setragni on 29/08/20.
 //
 
+import UIKit
 import Foundation
+import UserNotifications
 
 @available(iOS 10.0, *)
 extension UNNotificationAttachment {
