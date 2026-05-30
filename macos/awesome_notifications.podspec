@@ -14,7 +14,9 @@ A new Flutter project.
   s.author           = { 'Your Company' => 'email@example.com' }
 
   s.source           = { :path => '.' }
-  s.source_files     = 'Classes/**/*'
+  # Sources live inside the Swift package directory so CocoaPods and
+  # Swift Package Manager share a single source of truth.
+  s.source_files     = 'awesome_notifications/Sources/awesome_notifications/**/*.swift'
   s.dependency 'FlutterMacOS'
 
   s.platform = :osx, '10.11'

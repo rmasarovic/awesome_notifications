@@ -21,6 +21,9 @@ let package = Package(
         )
     ],
     dependencies: [
+        // Flutter framework, provided by Flutter's SPM integration as a
+        // sibling package at build time.
+        .package(name: "FlutterFramework", path: "../FlutterFramework"),
         // Awesome Notifications iOS core. Points at the fork that adds
         // Swift Package Manager support. No tags published yet, so we
         // track the `main` branch (SPM pins the exact commit in
@@ -34,6 +37,7 @@ let package = Package(
         .target(
             name: "awesome_notifications",
             dependencies: [
+                .product(name: "FlutterFramework", package: "FlutterFramework"),
                 .product(name: "IosAwnCore", package: "IosAwnCore")
             ]
         )
