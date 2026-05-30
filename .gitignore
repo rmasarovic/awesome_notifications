@@ -8,3 +8,6 @@ example/android/app/.cxx/
 .idea/
 
 .DS_Store
+
+# Claude Code runtime artifacts
+.claude/scheduled_tasks.lock
